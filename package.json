@@ -1,0 +1,16 @@
+{
+  "name": "web-dashboard",
+  "version": "1.0.0",
+  "description": "Vibe-rary — a personal app library dashboard",
+  "scripts": {
+    "build": "node build/generate-manifest.js",
+    "dev": "npx serve . -l 3000"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "fs-extra": "^11.2.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

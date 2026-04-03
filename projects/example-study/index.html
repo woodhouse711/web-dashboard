@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Color Field Study</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: #0c0c0c; }
+    canvas { display: block; width: 100%; height: 100%; }
+    #info {
+      position: fixed;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: ui-monospace, monospace;
+      font-size: 11px;
+      color: rgba(255,255,255,0.3);
+      pointer-events: none;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="c"></canvas>
+  <div id="info">move cursor · click to cycle palette</div>
+  <script>
+    const canvas = document.getElementById('c');
+    const ctx = canvas.getContext('2d');
+
+    const PALETTES = [
+      { a: [74, 158, 255], b: [255, 100, 74] },   // blue / coral
+      { a: [74, 255, 158], b: [255, 74, 200] },    // mint / pink
+      { a: [255, 220, 74], b: [74, 100, 255] },    // gold / indigo
+      { a: [255, 74, 100], b: [74, 255, 220] },    // red / teal
+      { a: [200, 74, 255], b: [255, 200, 74] },    // purple / amber
+    ];
+
+    let paletteIdx = 0;
+    let mx = 0.5, my = 0.5;
+    let tmx = 0.5, tmy = 0.5;
+
+    function resize() {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    canvas.addEventListener('mousemove', e => {
+      const r = canvas.getBoundingClientRect();
+      tmx = (e.clientX - r.left) / r.width;
+      tmy = (e.clientY - r.top) / r.height;
+    });
+
+    canvas.addEventListener('touchmove', e => {
+      e.preventDefault();
+      const r = canvas.getBoundingClientRect();
+      const t = e.touches[0];
+      tmx = (t.clientX - r.left) / r.width;
+      tmy = (t.clientY - r.top) / r.height;
+    }, { passive: false });
+
+    canvas.addEventListener('click', () => {
+      paletteIdx = (paletteIdx + 1) % PALETTES.length;
+    });
+
+    function lerp(a, b, t) { return a + (b - a) * t; }
+
+    function lerpColor(c1, c2, t) {
+      return [
+        Math.round(lerp(c1[0], c2[0], t)),
+        Math.round(lerp(c1[1], c2[1], t)),
+        Math.round(lerp(c1[2], c2[2], t)),
+      ];
+    }
+
+    function draw() {
+      const { a, b } = PALETTES[paletteIdx];
+      const W = canvas.width, H = canvas.height;
+
+      // Smooth follow
+      mx = lerp(mx, tmx, 0.04);
+      my = lerp(my, tmy, 0.04);
+
+      const gx = Math.round(mx * W);
+      const gy = Math.round(my * H);
+
+      // Radial gradient from cursor
+      const grad = ctx.createRadialGradient(gx, gy, 0, gx, gy, Math.max(W, H) * 0.9);
+
+      const c1 = lerpColor(a, b, mx);
+      const c2 = lerpColor(b, a, my);
+      const c3 = [12, 12, 12];
+
+      grad.addColorStop(0, `rgba(${c1.join(',')},0.9)`);
+      grad.addColorStop(0.4, `rgba(${c2.join(',')},0.5)`);
+      grad.addColorStop(1, `rgba(${c3.join(',')},1)`);
+
+      // Solid base
+      ctx.fillStyle = `rgb(12,12,12)`;
+      ctx.fillRect(0, 0, W, H);
+
+      // Gradient overlay
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, W, H);
+
+      // Soft vignette
+      const vig = ctx.createRadialGradient(W/2, H/2, H*0.2, W/2, H/2, H*0.85);
+      vig.addColorStop(0, 'rgba(0,0,0,0)');
+      vig.addColorStop(1, 'rgba(0,0,0,0.6)');
+      ctx.fillStyle = vig;
+      ctx.fillRect(0, 0, W, H);
+
+      requestAnimationFrame(draw);
+    }
+
+    draw();
+  </script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add Project — Vibe-rary</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="site-logo">
+        <span class="site-logo-text">Vibe<span>-rary</span></span>
+      </a>
+      <nav class="site-nav">
+        <a href="index.html">Library</a>
+        <a href="upload.html" class="active">Upload</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="upload-layout">
+    <div class="container">
+      <h1>Add a Project</h1>
+      <p class="upload-subtitle">Package your project files for the library. You'll get a zip to drop into the repo.</p>
+
+      <!-- Metadata -->
+      <div class="form-section">
+        <div class="form-section-title">Project Info</div>
+
+        <div class="form-field">
+          <label class="form-label" for="f-title">Title <span>*</span></label>
+          <input class="form-input" type="text" id="f-title" placeholder="Color Field Study" required />
+        </div>
+
+        <div class="form-field">
+          <label class="form-label" for="f-slug">Slug <span>*</span></label>
+          <input class="form-input" type="text" id="f-slug" placeholder="color-field-study" pattern="[a-z0-9-]+" required />
+          <span class="form-hint">Lowercase letters, numbers, hyphens only. Auto-generated from title.</span>
+        </div>
+
+        <div class="form-field">
+          <label class="form-label" for="f-description">Description <span>*</span></label>
+          <textarea class="form-textarea" id="f-description" placeholder="What does this project do or explore?" rows="3" required></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label class="form-label" for="f-date">Date <span>*</span></label>
+            <input class="form-input" type="date" id="f-date" required />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="f-status">Status <span>*</span></label>
+            <select class="form-select" id="f-status">
+              <option value="published">Published</option>
+              <option value="draft" selected>Draft</option>
+              <option value="archived">Archived</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label class="form-label" for="f-format">Format</label>
+            <select class="form-select" id="f-format">
+              <option value="html">html — index.html</option>
+              <option value="react">react — index.jsx</option>
+              <option value="markdown">markdown — content.md</option>
+              <option value="json">json — data.json</option>
+              <option value="static">static — inline HTML</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="f-render">Render mode</label>
+            <select class="form-select" id="f-render">
+              <option value="iframe">iframe</option>
+              <option value="inline">inline</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label class="form-label" for="f-aspect">Aspect Ratio</label>
+            <select class="form-select" id="f-aspect">
+              <option value="16:9">16:9 (widescreen)</option>
+              <option value="4:3">4:3</option>
+              <option value="1:1">1:1 (square)</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="f-version">Version</label>
+            <input class="form-input" type="text" id="f-version" placeholder="1.0.0" value="1.0.0" />
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label class="form-label" for="f-tags">Tags</label>
+          <input class="form-input" type="text" id="f-tags" placeholder="canvas, interactive, color" />
+          <span class="form-hint">Comma-separated. Max 5 tags.</span>
+        </div>
+      </div>
+
+      <!-- File Upload -->
+      <div class="form-section">
+        <div class="form-section-title">Project Files</div>
+
+        <div
+          class="drop-zone"
+          id="drop-zone"
+          tabindex="0"
+          role="button"
+          aria-label="Drop project files here"
+        >
+          <div class="drop-zone-icon">📁</div>
+          <div class="drop-zone-text">Drop files here or click to browse</div>
+          <div class="drop-zone-hint">index.html, assets, thumb.png — all files for your project folder</div>
+          <input type="file" id="file-input" multiple style="display:none" />
+        </div>
+
+        <div class="file-list" id="file-list"></div>
+      </div>
+
+      <!-- Actions -->
+      <div style="display:flex;gap:var(--sp-3);align-items:center">
+        <button class="btn btn-primary" id="generate-btn">
+          Generate Package
+        </button>
+        <button class="btn" id="reset-btn">Reset</button>
+        <span class="text-xs text-dim" id="form-error" style="color:#ff6b6b"></span>
+      </div>
+
+      <!-- Output -->
+      <div class="output-area" id="output-area">
+        <h3>Your package is ready</h3>
+        <div class="output-instructions">
+          <ol>
+            <li>Download the zip using the button below.</li>
+            <li>Unzip it — you'll get a folder named <code id="out-slug-name">your-project/</code></li>
+            <li>Move the folder into <code>projects/</code> in the repo.</li>
+            <li>Commit and push:
+              <br><code>git add projects/<span id="out-slug-cmd"></span></code>
+              <br><code>git commit -m "add: <span id="out-slug-commit"></span>"</code>
+              <br><code>git push</code>
+            </li>
+            <li>GitHub Actions will rebuild the manifest and deploy automatically.</li>
+          </ol>
+        </div>
+        <button class="btn btn-primary" id="download-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px">
+            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download zip
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <span class="footer-text">Vibe-rary</span>
+      <div class="footer-links">
+        <a href="https://github.com/woodhouse711/web-dashboard" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JSZip (CDN) for client-side zip generation -->
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+  <script src="js/upload.js"></script>
+</body>
+</html>

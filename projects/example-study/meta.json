@@ -1,0 +1,13 @@
+{
+  "title": "Color Field Study",
+  "description": "An interactive gradient field that responds to cursor movement. Drag to shift the color relationship between complementary hues.",
+  "date": "2026-04-03",
+  "tags": ["color", "interactive", "canvas"],
+  "status": "published",
+  "render": "iframe",
+  "format": "html",
+  "aspect": "16:9",
+  "author": "",
+  "links": [],
+  "version": "1.0.0"
+}
