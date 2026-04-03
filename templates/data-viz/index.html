@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Visualization</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: 100%; height: 100%;
+      background: #0c0c0c; color: #e8e6e1;
+      font-family: system-ui, sans-serif;
+    }
+    #chart { width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <svg id="chart"></svg>
+
+  <!-- D3.js (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+
+  <script>
+    // ── Replace with your data ───────────────────────────────
+    const data = [
+      { label: 'A', value: 42 },
+      { label: 'B', value: 78 },
+      { label: 'C', value: 55 },
+      { label: 'D', value: 91 },
+      { label: 'E', value: 33 },
+    ];
+    // ────────────────────────────────────────────────────────
+
+    const svg = d3.select('#chart');
+    const W = window.innerWidth, H = window.innerHeight;
+    const margin = { top: 40, right: 40, bottom: 60, left: 60 };
+    const w = W - margin.left - margin.right;
+    const h = H - margin.top - margin.bottom;
+
+    svg.attr('viewBox', `0 0 ${W} ${H}`);
+
+    const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
+
+    const x = d3.scaleBand().domain(data.map(d => d.label)).range([0, w]).padding(0.3);
+    const y = d3.scaleLinear().domain([0, d3.max(data, d => d.value)]).range([h, 0]);
+
+    g.append('g').attr('transform', `translate(0,${h})`)
+      .call(d3.axisBottom(x))
+      .selectAll('text').style('fill', '#888').style('font-size', '13px');
+
+    g.append('g')
+      .call(d3.axisLeft(y).ticks(5))
+      .selectAll('text').style('fill', '#888').style('font-size', '12px');
+
+    g.selectAll('.domain, .tick line').style('stroke', 'rgba(255,255,255,0.1)');
+
+    g.selectAll('rect')
+      .data(data)
+      .join('rect')
+      .attr('x', d => x(d.label))
+      .attr('y', d => y(d.value))
+      .attr('width', x.bandwidth())
+      .attr('height', d => h - y(d.value))
+      .attr('fill', '#4a9eff')
+      .attr('rx', 3)
+      .attr('opacity', 0.85);
+  </script>
+</body>
+</html>

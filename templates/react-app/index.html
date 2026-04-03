@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>React Study</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: 100%; height: 100%;
+      background: #0c0c0c; color: #e8e6e1;
+      font-family: system-ui, sans-serif;
+    }
+    #root { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- React + Babel (CDN — no build step required) -->
+  <script src="https://cdn.jsdelivr.net/npm/react@18/umd/react.development.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7/babel.min.js"></script>
+
+  <script type="text/babel">
+    // ── Your component here ──────────────────────────────────
+    function App() {
+      const [count, setCount] = React.useState(0);
+      return (
+        <div style={{ textAlign: 'center' }}>
+          <h1 style={{ marginBottom: '1rem' }}>React Study</h1>
+          <p style={{ color: '#888', marginBottom: '1rem' }}>Count: {count}</p>
+          <button
+            onClick={() => setCount(c => c + 1)}
+            style={{
+              padding: '8px 20px', background: '#4a9eff', border: 'none',
+              borderRadius: '6px', color: '#fff', cursor: 'pointer', fontSize: '1rem'
+            }}
+          >
+            Click me
+          </button>
+        </div>
+      );
+    }
+    // ── Your component ends here ─────────────────────────────
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>

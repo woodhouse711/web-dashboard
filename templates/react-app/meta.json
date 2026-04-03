@@ -1,0 +1,13 @@
+{
+  "title": "React Study",
+  "description": "A React component experiment.",
+  "date": "2026-01-01",
+  "tags": ["react", "interactive"],
+  "status": "draft",
+  "render": "iframe",
+  "format": "react",
+  "aspect": "16:9",
+  "author": "",
+  "links": [],
+  "version": "1.0.0"
+}

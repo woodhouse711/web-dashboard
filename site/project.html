@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project — Vibe-rary</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="site-logo">
+        <span class="site-logo-text">Vibe<span>-rary</span></span>
+      </a>
+      <nav class="site-nav">
+        <a href="index.html">Library</a>
+        <a href="upload.html">Upload</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="viewer-layout">
+    <!-- Viewer Header -->
+    <div class="viewer-header">
+      <div class="container">
+        <a href="index.html" class="back-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+          Library
+        </a>
+        <div class="viewer-title-area">
+          <div class="viewer-project-title" id="viewer-title">Loading...</div>
+          <div class="viewer-project-meta" id="viewer-meta"></div>
+        </div>
+        <div class="viewer-actions">
+          <button class="btn" id="fullscreen-btn" title="Fullscreen" style="display:none">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/>
+              <line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/>
+            </svg>
+            Fullscreen
+          </button>
+          <a class="btn" id="open-link" href="#" target="_blank" rel="noopener" title="Open in new tab">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+              <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+            Open
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Render Area -->
+    <div class="render-area" id="render-area">
+      <div class="render-container" id="render-container">
+        <div class="render-loading">
+          <div class="spinner"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project Details -->
+    <div class="project-details" id="project-details" style="display:none">
+      <div class="container">
+        <div class="readme-panel" id="readme-panel">
+          <h2>Notes</h2>
+          <div class="readme-content" id="readme-content">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+        <div class="project-info-panel" id="project-info-panel">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <span class="footer-text">Vibe-rary</span>
+      <div class="footer-links">
+        <a href="https://github.com/woodhouse711/web-dashboard" target="_blank" rel="noopener">GitHub</a>
+        <a href="upload.html">Add Project</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/renderer.js"></script>
+  <script src="js/viewer.js"></script>
+</body>
+</html>

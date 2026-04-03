@@ -1,0 +1,13 @@
+{
+  "title": "DOM Study",
+  "description": "A DOM-based interactive experiment.",
+  "date": "2026-01-01",
+  "tags": ["dom", "interactive"],
+  "status": "draft",
+  "render": "iframe",
+  "format": "html",
+  "aspect": "16:9",
+  "author": "",
+  "links": [],
+  "version": "1.0.0"
+}
