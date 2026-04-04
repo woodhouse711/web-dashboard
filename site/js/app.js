@@ -3,7 +3,7 @@
  * Loads site-data.json, renders project cards, handles filtering/search/sort.
  */
 
-const MANIFEST_PATH = '../site-data.json';
+const MANIFEST_PATH = 'site-data.json';
 
 // Aspect ratio → CSS aspect-ratio value
 const ASPECT_MAP = {
@@ -99,7 +99,7 @@ function buildCard(project) {
   link.setAttribute('data-slug', project.slug);
 
   const thumbHtml = project.thumb
-    ? `<img src="../${project.thumb}" alt="${project.title}" loading="lazy" />`
+    ? `<img src="${project.thumb}" alt="${project.title}" loading="lazy" />`
     : `<div class="card-thumb-placeholder">${DEFAULT_THUMB_SVG}</div>`;
 
   const draftBadge = project.status !== 'published'

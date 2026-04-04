@@ -29,7 +29,7 @@ const Renderer = (() => {
     showLoading(container);
 
     const iframe = document.createElement('iframe');
-    iframe.src = `../projects/${project.slug}/index.html`;
+    iframe.src = `projects/${project.slug}/index.html`;
     iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-popups');
     iframe.setAttribute('allowfullscreen', '');
     iframe.setAttribute('loading', 'lazy');
@@ -44,7 +44,7 @@ const Renderer = (() => {
   async function renderStatic(project, container) {
     showLoading(container);
     try {
-      const res = await fetch(`../projects/${project.slug}/index.html`);
+      const res = await fetch(`projects/${project.slug}/index.html`);
       const html = await res.text();
 
       const parser = new DOMParser();
@@ -76,7 +76,7 @@ const Renderer = (() => {
   async function renderMarkdown(project, container) {
     showLoading(container);
     try {
-      const res = await fetch(`../projects/${project.slug}/content.md`);
+      const res = await fetch(`projects/${project.slug}/content.md`);
       const text = await res.text();
 
       // Simple markdown → HTML (no external dep)
@@ -104,7 +104,7 @@ const Renderer = (() => {
     // Load via iframe — React projects are self-contained HTML files
     // (react projects should have an index.html that includes React + Babel)
     const iframe = document.createElement('iframe');
-    iframe.src = `../projects/${project.slug}/index.html`;
+    iframe.src = `projects/${project.slug}/index.html`;
     iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-forms allow-pointer-lock');
     iframe.setAttribute('loading', 'lazy');
     iframe.title = project.title;
@@ -118,7 +118,7 @@ const Renderer = (() => {
   async function renderJson(project, container) {
     showLoading(container);
     try {
-      const res = await fetch(`../projects/${project.slug}/data.json`);
+      const res = await fetch(`projects/${project.slug}/data.json`);
       const data = await res.json();
 
       const wrapper = document.createElement('div');

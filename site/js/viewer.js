@@ -3,7 +3,7 @@
  * Reads ?slug= param, loads manifest, renders project via Renderer.
  */
 
-const MANIFEST_PATH = '../site-data.json';
+const MANIFEST_PATH = 'site-data.json';
 
 function formatDate(dateStr) {
   if (!dateStr) return '';
@@ -47,7 +47,7 @@ function simpleMarkdown(text) {
 
 async function loadReadme(slug) {
   try {
-    const res = await fetch(`../projects/${slug}/README.md`);
+    const res = await fetch(`projects/${slug}/README.md`);
     if (!res.ok) return null;
     return await res.text();
   } catch { return null; }
@@ -154,7 +154,7 @@ async function init() {
 
     // Open link
     const openLink = document.getElementById('open-link');
-    openLink.href = `../projects/${slug}/index.html`;
+    openLink.href = `projects/${slug}/index.html`;
 
     // Render the project
     const container = document.getElementById('render-container');
