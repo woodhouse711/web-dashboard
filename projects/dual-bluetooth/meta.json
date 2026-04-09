@@ -1,0 +1,13 @@
+{
+  "title": "Dual Bluetooth",
+  "description": "A live visualization of multi-device Bluetooth — A2DP audio to Car Audio/CarPlay and a Bluetooth speaker, showing what's possible (and what's not) from a single iPhone.",
+  "date": "2026-04-09",
+  "tags": ["bluetooth", "canvas", "particles", "network", "interactive"],
+  "status": "published",
+  "render": "iframe",
+  "format": "html",
+  "aspect": "16:9",
+  "author": "",
+  "links": [],
+  "version": "1.0.0"
+}

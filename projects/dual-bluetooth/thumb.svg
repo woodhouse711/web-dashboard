@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#0c0c0c"/>
+
+  <!-- Connection paths (dashed) -->
+  <path d="M300 315 Q660 200 820 215" stroke="#4a9eff" stroke-width="1.5" stroke-dasharray="6 12" fill="none" opacity="0.35"/>
+  <path d="M300 315 Q660 430 820 415" stroke="#ffa03c" stroke-width="1.5" stroke-dasharray="6 12" fill="none" opacity="0.35"/>
+
+  <!-- Signal rings — iPhone -->
+  <circle cx="300" cy="315" r="55" stroke="#4a9eff" stroke-width="1" fill="none" opacity="0.18"/>
+  <circle cx="300" cy="315" r="80" stroke="#4a9eff" stroke-width="1" fill="none" opacity="0.12"/>
+  <circle cx="300" cy="315" r="108" stroke="#4a9eff" stroke-width="1" fill="none" opacity="0.07"/>
+
+  <!-- Signal rings — Car -->
+  <circle cx="820" cy="215" r="48" stroke="#3cdc8c" stroke-width="1" fill="none" opacity="0.18"/>
+  <circle cx="820" cy="215" r="72" stroke="#3cdc8c" stroke-width="1" fill="none" opacity="0.11"/>
+
+  <!-- Signal rings — Speaker -->
+  <circle cx="820" cy="415" r="48" stroke="#ffa03c" stroke-width="1" fill="none" opacity="0.18"/>
+  <circle cx="820" cy="415" r="72" stroke="#ffa03c" stroke-width="1" fill="none" opacity="0.11"/>
+
+  <!-- Glow — iPhone -->
+  <radialGradient id="gi" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="#4a9eff" stop-opacity="0.35"/>
+    <stop offset="100%" stop-color="#4a9eff" stop-opacity="0"/>
+  </radialGradient>
+  <circle cx="300" cy="315" r="45" fill="url(#gi)"/>
+
+  <!-- Glow — Car -->
+  <radialGradient id="gc" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="#3cdc8c" stop-opacity="0.3"/>
+    <stop offset="100%" stop-color="#3cdc8c" stop-opacity="0"/>
+  </radialGradient>
+  <circle cx="820" cy="215" r="40" fill="url(#gc)"/>
+
+  <!-- Glow — Speaker -->
+  <radialGradient id="gs" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="#ffa03c" stop-opacity="0.3"/>
+    <stop offset="100%" stop-color="#ffa03c" stop-opacity="0"/>
+  </radialGradient>
+  <circle cx="820" cy="415" r="40" fill="url(#gs)"/>
+
+  <!-- Core discs -->
+  <circle cx="300" cy="315" r="18" fill="#4a9eff" opacity="0.92"/>
+  <circle cx="820" cy="215" r="18" fill="#3cdc8c" opacity="0.92"/>
+  <circle cx="820" cy="415" r="18" fill="#ffa03c" opacity="0.92"/>
+
+  <!-- Bluetooth marks -->
+  <g stroke="#0c0c0c" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <polyline points="300,307 300,323 308,319 300,315 308,311 300,307" transform="translate(-4,0)"/>
+  </g>
+  <g stroke="#0c0c0c" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <polyline points="820,207 820,223 828,219 820,215 828,211 820,207" transform="translate(-4,0)"/>
+  </g>
+  <g stroke="#0c0c0c" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <polyline points="820,407 820,423 828,419 820,415 828,411 820,407" transform="translate(-4,0)"/>
+  </g>
+
+  <!-- Particles along iPhone→Car path -->
+  <circle cx="460" cy="278" r="3" fill="#4a9eff" opacity="0.7"/>
+  <circle cx="560" cy="255" r="2" fill="#4a9eff" opacity="0.5"/>
+  <circle cx="650" cy="240" r="2.5" fill="#4a9eff" opacity="0.6"/>
+  <circle cx="740" cy="228" r="2" fill="#4a9eff" opacity="0.45"/>
+
+  <!-- Particles along iPhone→Speaker path -->
+  <circle cx="460" cy="352" r="3" fill="#ffa03c" opacity="0.7"/>
+  <circle cx="560" cy="375" r="2" fill="#ffa03c" opacity="0.5"/>
+  <circle cx="650" cy="390" r="2.5" fill="#ffa03c" opacity="0.6"/>
+  <circle cx="740" cy="404" r="2" fill="#ffa03c" opacity="0.45"/>
+
+  <!-- Labels -->
+  <text x="300" y="350" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" fill="#e8e6e1" opacity="0.7">iPhone</text>
+  <text x="300" y="366" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#4a9eff" opacity="0.6">A2DP · BLE</text>
+
+  <text x="820" y="250" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" fill="#e8e6e1" opacity="0.7">Car Audio</text>
+  <text x="820" y="266" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#3cdc8c" opacity="0.6">A2DP + CarPlay</text>
+
+  <text x="820" y="450" text-anchor="middle" font-family="system-ui,sans-serif" font-size="14" fill="#e8e6e1" opacity="0.7">Peter Millar</text>
+  <text x="820" y="466" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#ffa03c" opacity="0.6">BT Speaker</text>
+
+  <!-- Title -->
+  <text x="600" y="570" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" letter-spacing="0.1em" fill="#e8e6e1" opacity="0.25">DUAL BLUETOOTH</text>
+</svg>
