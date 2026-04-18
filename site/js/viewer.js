@@ -88,6 +88,11 @@ function renderInfoPanel(project) {
       ${tagsHtml}
     </div>
     ${linksHtml ? `<div class="info-block"><div class="info-block-label">Links</div>${linksHtml}</div>` : ''}
+    ${project.source ? `
+    <div class="info-block">
+      <div class="info-block-label">Source</div>
+      <div class="info-links"><a class="info-link" href="${project.source}" target="_blank" rel="noopener">GitHub →</a></div>
+    </div>` : ''}
   `;
 }
 
