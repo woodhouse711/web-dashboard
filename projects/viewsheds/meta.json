@@ -1,0 +1,14 @@
+{
+  "title": "Viewshed Explorer",
+  "description": "360° terrain visibility analysis tool. Drop an observer anywhere on a map, compute a viewshed across a configurable radius, and explore an interactive polar horizon diagram showing skyline, occluded terrain, and island peaks. Earth curvature corrected. No API keys required.",
+  "date": "2026-04-06",
+  "tags": ["terrain", "geospatial", "mapping", "visualization"],
+  "status": "draft",
+  "render": "iframe",
+  "format": "html",
+  "aspect": "16:9",
+  "author": "",
+  "links": [],
+  "version": "1.0.0",
+  "source": "https://github.com/woodhouse711/viewsheds"
+}
